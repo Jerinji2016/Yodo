@@ -1,13 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../routes.dart';
 import '../widgets/google_sign_in_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  void _signInWithGoogle() async {
-    debugPrint("LoginPage._signInWithGoogle: ");
+  void _onSignInComplete(BuildContext context, User user) async {
+    Navigator.pushReplacementNamed(context, Routes.tasksList);
   }
+
+  void _onSignInFailed(String message) async {}
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +45,12 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Center(
-              child: GoogleSignInButton(
-                onPressed: _signInWithGoogle,
+              child: AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                child: GoogleSignInButton(
+                  onSignInComplete: (user) => _onSignInComplete(context, user),
+                  onSignInFailed: _onSignInFailed,
+                ),
               ),
             ),
           ],
