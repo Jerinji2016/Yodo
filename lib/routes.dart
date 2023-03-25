@@ -5,7 +5,7 @@ import 'ui/tasks_list.dart';
 
 class Routes {
   static const String login = "/";
-  static const String tasksList = "/tasks-list";
+  static const String tasksList = "tasks-list";
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     debugPrint("Routes.onGenerateRoute: ${settings.name}");

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,16 @@ class YodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    User? user = FirebaseAuth.instance.currentUser;
+
+    String initialRoute = Routes.login;
+    if (user != null) {
+      initialRoute = Routes.tasksList;
+    }
+
+    return MaterialApp(
       onGenerateRoute: Routes.onGenerateRoute,
+      initialRoute: initialRoute,
     );
   }
 }
