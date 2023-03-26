@@ -2,14 +2,14 @@ library manage_task;
 
 import 'package:flutter/material.dart';
 
-class ManageTask extends StatefulWidget {
-  const ManageTask({Key? key}) : super(key: key);
+class TaskEditor extends StatefulWidget {
+  const TaskEditor({Key? key}) : super(key: key);
 
   @override
-  State<ManageTask> createState() => _ManageTaskState();
+  State<TaskEditor> createState() => _TaskEditorState();
 }
 
-class _ManageTaskState extends State<ManageTask> {
+class _TaskEditorState extends State<TaskEditor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

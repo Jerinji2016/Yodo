@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yodo/ui/manage_task/manage_task.dart';
 
 import 'ui/login.dart';
+import 'ui/task_editor/task_editor.dart';
 import 'ui/tasks_list/tasks_list.dart';
 
 class Routes {
@@ -19,7 +19,7 @@ class Routes {
         );
       case manageTask:
         return MaterialPageRoute(
-          builder: (context) => const ManageTask(),
+          builder: (context) => const TaskEditor(),
         );
       default:
         return MaterialPageRoute(
