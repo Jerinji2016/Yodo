@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../modals/task.dart';
 
 class CreateTaskDto {
@@ -9,5 +11,6 @@ class CreateTaskDto {
         "name": task.name,
         "description": task.description,
         "dueDate": task.dueDate.millisecondsSinceEpoch,
+        "createdAt": FieldValue.serverTimestamp(),
       };
 }
