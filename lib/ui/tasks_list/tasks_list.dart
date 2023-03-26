@@ -15,32 +15,16 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 5.0,
-        shadowColor: Colors.grey[100]!,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10.0),
-            bottomRight: Radius.circular(10.0),
-          ),
-        ),
-        title: const Text(
-          "Yodo",
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.orange,
-          ),
-        ),
+        title: const Text("Yodo"),
         actions: [
           SafeArea(
             child: IconButton(
               onPressed: () => ProfileModal.show(context),
               padding: const EdgeInsets.all(16.0),
               enableFeedback: true,
-              icon: const Icon(
+              icon: Icon(
                 Icons.person,
-                color: Colors.orange,
+                color: Colors.grey[700]!,
               ),
             ),
           ),
@@ -51,7 +35,6 @@ class TasksList extends StatelessWidget {
         backgroundColor: Colors.orange,
         child: const Icon(
           Icons.add,
-          // color: Colors.white,
         ),
       ),
       body: const _NoTasksView(),

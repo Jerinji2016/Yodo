@@ -15,6 +15,10 @@ class _TaskEditorState extends State<TaskEditor> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Create New Task"),
+        iconTheme: IconThemeData(
+          color: Colors.grey[700]!,
+        ),
+        backgroundColor: Colors.white,
       ),
       body: Container(),
     );
