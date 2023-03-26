@@ -32,16 +32,11 @@ class _NoTasksView extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PrimaryButton(
-                prefixIcon: Icons.add,
-                text: "New TODO",
-                borderRadius: 30.0,
-                onTap: () => Navigator.pushNamed(context, Routes.manageTask),
-              ),
-            ],
+          PrimaryButton(
+            prefixIcon: Icons.add,
+            text: "New TODO",
+            borderRadius: 30.0,
+            onTap: () => Navigator.pushNamed(context, Routes.manageTask),
           )
         ],
       ),
