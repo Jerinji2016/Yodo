@@ -1,4 +1,4 @@
-library manage_task;
+library task_editor;
 
 import 'package:flutter/material.dart';
 
