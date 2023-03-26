@@ -30,8 +30,9 @@ class TaskEditor extends StatefulWidget {
 
   const TaskEditor({
     Key? key,
-    this.args = const TaskEditorArgs.create(),
-  }) : super(key: key);
+    TaskEditorArgs? args,
+  })  : args = args ?? const TaskEditorArgs.create(),
+        super(key: key);
 
   @override
   State<TaskEditor> createState() => _TaskEditorState();
