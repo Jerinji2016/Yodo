@@ -1,0 +1,85 @@
+part of task_editor;
+
+class _TaskDatePicker extends StatefulWidget {
+  final DateTime? initialDateTime;
+
+  const _TaskDatePicker({
+    Key? key,
+    this.initialDateTime,
+  }) : super(key: key);
+
+  @override
+  State<_TaskDatePicker> createState() => _TaskDatePickerState();
+}
+
+class _TaskDatePickerState extends State<_TaskDatePicker> {
+  DateTime? _selectedDate;
+
+  bool get hasValidDate => _selectedDate != null;
+
+  void _selectDate() async {
+    DateTime now = DateTime.now();
+    DateTime firstDate = now, lastDate = now.copyWith(year: 2100);
+
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    if (selectedDate == null) {
+      //  ignore no date selected
+      return;
+    }
+
+    setState(
+      () => _selectedDate = selectedDate,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          "Due Date",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.grey[600]!,
+          ),
+        ),
+        const SizedBox(height: 4.0),
+        GestureDetector(
+          onTap: _selectDate,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(8.0),
+              ),
+              border: Border.all(
+                color: Theme.of(context).inputDecorationTheme.border?.borderSide.color ?? Colors.grey[500]!,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: Row(
+                children: [
+                  Text(
+                    _selectedDate != null ? globalDateFormat.format(_selectedDate!) : "Select due date",
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey[700]!,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
