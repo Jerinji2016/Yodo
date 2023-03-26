@@ -39,7 +39,7 @@ class _NoTasksView extends StatelessWidget {
                 prefixIcon: Icons.add,
                 text: "New TODO",
                 borderRadius: 30.0,
-                onTap: () {},
+                onTap: () => Navigator.pushNamed(context, Routes.manageTask),
               ),
             ],
           )

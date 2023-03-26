@@ -2,6 +2,7 @@ library tasks_list;
 
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/profile_modal.dart';
 
@@ -9,10 +10,6 @@ part '_no_tasks_view.dart';
 
 class TasksList extends StatelessWidget {
   const TasksList({Key? key}) : super(key: key);
-
-  void _navigateToCreateTask(BuildContext context) {
-    debugPrint("TasksList._navigateToCreateTask: ");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +47,7 @@ class TasksList extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _navigateToCreateTask(context),
+        onPressed: () => Navigator.pushNamed(context, Routes.manageTask),
         backgroundColor: Colors.orange,
         child: const Icon(
           Icons.add,
