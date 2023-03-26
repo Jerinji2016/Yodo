@@ -14,7 +14,6 @@ class PrimaryBottomSheet extends StatelessWidget {
   }) async =>
       await showModalBottomSheet<bool>(
         context: context,
-        isDismissible: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12.0),
