@@ -170,15 +170,17 @@ class _TaskEditorState extends State<TaskEditor> {
                 expandedWidth: true,
                 onTap: _onSubmitTapped,
               ),
-              const SizedBox(height: 8.0),
-              PrimaryTextButton(
-                text: "Delete",
-                onTap: _onDeleteTapped,
-                textStyle: const TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
+              if (widget.args.editType == TaskEditType.edit) ...[
+                const SizedBox(height: 8.0),
+                PrimaryTextButton(
+                  text: "Delete",
+                  onTap: _onDeleteTapped,
+                  textStyle: const TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ),
