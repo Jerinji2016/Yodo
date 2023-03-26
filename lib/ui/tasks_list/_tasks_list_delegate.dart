@@ -12,7 +12,7 @@ class _TasksListDelegate extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: data.length,
-      padding: const EdgeInsets.only(bottom: 32.0),
+      padding: const EdgeInsets.only(bottom: 32.0, top: 10.0),
       itemBuilder: (context, index) {
         QueryDocumentSnapshot<Map<String, dynamic>> snapshot = data.elementAt(index);
         Task task = Task.fromJson(snapshot.id, snapshot.data());
