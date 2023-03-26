@@ -5,6 +5,7 @@ class PrimaryButton extends StatelessWidget {
   final Function() onTap;
   final double borderRadius;
   final IconData? prefixIcon;
+  final bool expandedWidth;
 
   const PrimaryButton({
     Key? key,
@@ -12,6 +13,7 @@ class PrimaryButton extends StatelessWidget {
     required this.onTap,
     this.borderRadius = 8.0,
     this.prefixIcon,
+    this.expandedWidth = false,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,8 @@ class PrimaryButton extends StatelessWidget {
 
     if (prefixIcon != null) {
       buttonChild = Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: expandedWidth ? MainAxisSize.max : MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(prefixIcon, color: Colors.white),
           const SizedBox(width: 4.0),
