@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'routes.dart';
 
@@ -27,6 +28,16 @@ class YodoApp extends StatelessWidget {
 
     return MaterialApp(
       onGenerateRoute: Routes.onGenerateRoute,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+        ),
+      ),
       initialRoute: initialRoute,
     );
   }
