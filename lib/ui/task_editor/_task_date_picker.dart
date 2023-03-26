@@ -2,10 +2,12 @@ part of task_editor;
 
 class _TaskDatePicker extends StatefulWidget {
   final DateTime? initialDateTime;
+  final Function(DateTime selectedDate) onDateSelected;
 
   const _TaskDatePicker({
     Key? key,
     this.initialDateTime,
+    required this.onDateSelected,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
       return;
     }
 
+    widget.onDateSelected.call(selectedDate);
     setState(
       () => _selectedDate = selectedDate,
     );
