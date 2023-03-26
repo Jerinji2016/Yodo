@@ -137,7 +137,6 @@ class _LogOutButtonState extends State<LogOutButton> {
   bool _isLoggingOut = false;
 
   void _logout() async {
-    debugPrint("_LogOutButtonState._logout: ");
     setState(() => _isLoggingOut = true);
     try {
       await FirebaseAuth.instance.signOut();
