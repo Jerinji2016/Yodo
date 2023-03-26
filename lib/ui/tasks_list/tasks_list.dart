@@ -24,16 +24,11 @@ class TasksList extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Yodo"),
         actions: [
-          SafeArea(
-            child: IconButton(
-              onPressed: () => ProfileModal.show(context),
-              padding: const EdgeInsets.all(16.0),
-              enableFeedback: true,
-              icon: Icon(
-                Icons.person,
-                color: Colors.grey[700]!,
-              ),
-            ),
+          IconButton(
+            onPressed: () => ProfileModal.show(context),
+            padding: const EdgeInsets.all(16.0),
+            enableFeedback: true,
+            icon: const Icon(Icons.person),
           ),
         ],
       ),

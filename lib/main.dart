@@ -31,23 +31,26 @@ class YodoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.orange,
           elevation: 5.0,
           shadowColor: Colors.grey[100]!,
           systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
+            statusBarColor: Colors.orange,
             statusBarBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.light,
           ),
-          titleTextStyle: TextStyle(
+          titleTextStyle: const TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
-            color: Colors.grey[700]!,
+            color: Colors.white,
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.white,
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(8.0),
+              bottomRight: Radius.circular(8.0),
             ),
           ),
         ),
