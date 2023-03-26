@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../enums/task_edit_type.dart';
 import '../../modals/task.dart';
 import '../../utils/globals.dart';
+import '../../widgets/primary_bottom_sheet.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/primary_dialog.dart';
 import '../../widgets/primary_text_button.dart';
 import 'task_editor_view_modal.dart';
 
