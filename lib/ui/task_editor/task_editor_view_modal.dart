@@ -20,6 +20,7 @@ class TaskEditorViewModal {
     nameController = TextEditingController(text: task.name);
     descriptionController = TextEditingController(text: task.description);
     dueDate = task.dueDate;
+    debugPrint("TaskEditorViewModal.fromTask: $task");
   }
 
   bool get hasAllValuesEmpty => nameController.text.isEmpty && descriptionController.text.isEmpty && dueDate == null;

@@ -20,9 +20,13 @@ class TaskEditorArgs {
       : task = null,
         editType = TaskEditType.create;
 
-  TaskEditorArgs.edit(this.task) : editType = TaskEditType.edit;
+  TaskEditorArgs.edit(
+    Task this.task,
+  ) : editType = TaskEditType.edit;
 
-  TaskEditorArgs.duplicate(this.task) : editType = TaskEditType.duplicate;
+  TaskEditorArgs.duplicate(
+    Task this.task,
+  ) : editType = TaskEditType.duplicate;
 }
 
 class TaskEditor extends StatefulWidget {

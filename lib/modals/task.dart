@@ -20,6 +20,12 @@ class Task {
   @override
   int get hashCode => Object.hash(name, description, dueDate);
 
+  Task copyWith({String? name, String? description, DateTime? dueDate}) => Task.create(
+        name ?? this.name,
+        description ?? this.description,
+        dueDate ?? this.dueDate,
+      );
+
   @override
   bool operator ==(Object other) {
     if (other is Task) {
