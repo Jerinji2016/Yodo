@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../../modals/task.dart';
 import '../../routes.dart';
-import '../../utils/globals.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/profile_modal.dart';
 import '../task_details/task_details.dart';
@@ -45,7 +44,7 @@ class TasksList extends StatelessWidget {
             .collection("users")
             .doc(user.uid)
             .collection("tasks")
-            .orderBy("createdAt", descending: true)
+            .orderBy("dueDate", descending: false)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.data != null) {
