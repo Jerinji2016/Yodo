@@ -71,6 +71,7 @@ class _TaskEditorState extends State<TaskEditor> {
       Task task = _viewModal.validate();
       if (widget.args.editType == TaskEditType.edit) {
         //  update task
+        await _viewModal.updateTask(context, task);
       } else {
         await _viewModal.createTask(context, task);
       }
@@ -178,23 +179,28 @@ class _TaskEditorState extends State<TaskEditor> {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : PrimaryButton(
-                        text: "Submit",
-                        expandedWidth: true,
-                        onTap: _onSubmitTapped,
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          PrimaryButton(
+                            text: "Submit",
+                            expandedWidth: true,
+                            onTap: _onSubmitTapped,
+                          ),
+                          if (widget.args.editType == TaskEditType.edit) ...[
+                            const SizedBox(height: 8.0),
+                            PrimaryTextButton(
+                              text: "Delete",
+                              onTap: _onDeleteTapped,
+                              textStyle: const TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
               ),
-              if (widget.args.editType == TaskEditType.edit) ...[
-                const SizedBox(height: 8.0),
-                PrimaryTextButton(
-                  text: "Delete",
-                  onTap: _onDeleteTapped,
-                  textStyle: const TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
             ],
           ),
         ),
