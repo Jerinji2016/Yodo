@@ -89,29 +89,18 @@ class TaskDetails extends StatelessWidget {
             const SizedBox(height: 10.0),
             Text(
               task.description,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16.0,
+                color: Colors.grey[500],
               ),
             ),
             const SizedBox(height: 16.0),
-            Row(
-              children: [
-                const Text(
-                  "Due on: ",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(width: 6.0),
-                Text(
-                  globalDateFormat.format(task.dueDate),
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+            Text(
+              "Due on: ${globalDateFormat.format(task.dueDate)}",
+              style: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             const SizedBox(height: 24.0),
             Wrap(
