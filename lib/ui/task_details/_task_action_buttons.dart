@@ -19,7 +19,6 @@ class _TaskActionButtons extends StatelessWidget {
     return Material(
       borderOnForeground: true,
       elevation: 4.0,
-      shadowColor: Colors.grey[100]!,
       color: color,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(

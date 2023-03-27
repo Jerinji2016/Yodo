@@ -74,7 +74,6 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   Radius.circular(30.0),
                 ),
               ),
-              shadowColor: Colors.grey[100]!,
               child: InkWell(
                 onTap: _signInWithGoogle,
                 borderRadius: const BorderRadius.all(

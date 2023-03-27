@@ -20,8 +20,7 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.orange,
-      elevation: 10.0,
-      shadowColor: Colors.grey[100]!,
+      elevation: 8.0,
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius),
       ),

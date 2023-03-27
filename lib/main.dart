@@ -1,13 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yodo/providers/theme_provider.dart';
+import 'package:yodo/utils/themes.dart';
 
 import 'routes.dart';
+import 'utils/globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  preferences = await SharedPreferences.getInstance();
 
   runApp(
     const YodoApp(),
@@ -26,41 +32,20 @@ class YodoApp extends StatelessWidget {
       initialRoute = Routes.tasksList;
     }
 
-    return MaterialApp(
-      onGenerateRoute: Routes.onGenerateRoute,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: "Poppins",
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.orange,
-          elevation: 5.0,
-          shadowColor: Colors.grey[100]!,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.orange,
-            statusBarBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.light,
-          ),
-          titleTextStyle: const TextStyle(
-            fontFamily: "Poppins",
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          iconTheme: const IconThemeData(
-            color: Colors.white,
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(8.0),
-              bottomRight: Radius.circular(8.0),
-            ),
-          ),
-        ),
-        progressIndicatorTheme: const ProgressIndicatorThemeData(
-          color: Colors.orange,
-        ),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themProvider, child) {
+          return MaterialApp(
+            onGenerateRoute: Routes.onGenerateRoute,
+            debugShowCheckedModeBanner: false,
+            themeMode: themProvider.mode,
+            theme: lightTheme.copyWith(),
+            darkTheme: darkTheme.copyWith(),
+            initialRoute: initialRoute,
+          );
+        },
       ),
-      initialRoute: initialRoute,
     );
   }
 }

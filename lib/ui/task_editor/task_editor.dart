@@ -1,6 +1,7 @@
 library task_editor;
 
 import 'package:flutter/material.dart';
+import 'package:yodo/utils/themes.dart';
 
 import '../../enums/task_edit_type.dart';
 import '../../modals/task.dart';
@@ -141,11 +142,6 @@ class _TaskEditorState extends State<TaskEditor> {
               TextField(
                 controller: _viewModal.nameController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8.0),
-                    ),
-                  ),
                   label: Text("Task name"),
                 ),
               ),
@@ -155,14 +151,7 @@ class _TaskEditorState extends State<TaskEditor> {
                 minLines: 4,
                 maxLines: 4,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8.0),
-                    ),
-                  ),
                   label: Text("Task description"),
-                  alignLabelWithHint: true,
-                  floatingLabelAlignment: FloatingLabelAlignment.start,
                 ),
               ),
               const SizedBox(height: 16.0),

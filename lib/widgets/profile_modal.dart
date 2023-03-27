@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:yodo/providers/theme_provider.dart';
 
 import '../routes.dart';
 import 'primary_button.dart';
@@ -27,9 +29,10 @@ class ProfileModal extends StatelessWidget {
 
   const ProfileModal._({Key? key}) : super(key: key);
 
-  Widget getAvatar(User user) {
+  Widget getAvatar(BuildContext context, User user) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return CircleAvatar(
-      backgroundColor: Colors.grey[300]!,
+      backgroundColor: themeProvider.isDarkTheme ? Colors.black : Colors.grey[300]!,
       radius: 50,
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
@@ -61,7 +64,8 @@ class ProfileModal extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    debugPrint("ProfileModal.build: ${user.photoURL}");
+    ThemeProvider themeProvider = Provider.of(context);
+
     return Stack(
       alignment: Alignment.center,
       fit: StackFit.loose,
@@ -69,7 +73,7 @@ class ProfileModal extends StatelessWidget {
         Positioned(
           top: 50.0,
           child: Material(
-            color: Colors.white,
+            color: Theme.of(context).bottomSheetTheme.backgroundColor,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
@@ -114,7 +118,35 @@ class ProfileModal extends StatelessWidget {
         ),
         Positioned(
           top: 0.0,
-          child: getAvatar(user),
+          child: getAvatar(context, user),
+        ),
+        Positioned(
+          top: 72.0,
+          right: 24.0,
+          child: Material(
+            color: Colors.transparent,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0),
+              ),
+            ),
+            child: InkWell(
+              onTap: themeProvider.toggleTheme,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Builder(builder: (context) {
+                  Color color = themeProvider.isDarkTheme ? Colors.white : Colors.black;
+                  return Icon(
+                    themeProvider.icon,
+                    color: color,
+                  );
+                }),
+              ),
+            ),
+          ),
         ),
       ],
     );

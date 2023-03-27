@@ -76,6 +76,7 @@ class TaskDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12.0),
@@ -102,10 +103,7 @@ class TaskDetails extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
-                  child: const Icon(
-                    Icons.close,
-                    color: Colors.black,
-                  ),
+                  child: const Icon(Icons.close),
                 )
               ],
             ),
