@@ -87,7 +87,7 @@ class _TaskEditorState extends State<TaskEditor> {
   void _onDeleteTapped() async => await PrimaryBottomSheet.show(
         context: context,
         title: "Delete Task",
-        description: "Are you sure you want to delete this task?",
+        description: "Are you sure you want to delete the task ${widget.args.task!.name}?",
         yesButton: const PrimaryBottomSheetButton(
           "Delete",
           TextStyle(

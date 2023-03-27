@@ -3,11 +3,12 @@ library task_details;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:yodo/ui/task_editor/task_editor.dart';
-import 'package:yodo/utils/globals.dart';
 
 import '../../modals/task.dart';
 import '../../routes.dart';
+import '../../utils/globals.dart';
+import '../../widgets/primary_bottom_sheet.dart';
+import '../task_editor/task_editor.dart';
 
 class TaskDetails extends StatelessWidget {
   static void showBottomModalSheet(BuildContext context, Task task) async {
@@ -42,9 +43,32 @@ class TaskDetails extends StatelessWidget {
   }
 
   Future<void> _onDeleteTapped(BuildContext context) async {
-    User user = FirebaseAuth.instance.currentUser!;
-    Navigator.pop(context);
-    FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(task.id).delete();
+    await PrimaryBottomSheet.show(
+      context: context,
+      title: "Delete Task",
+      description: "Are you sure you want to delete the task ${task.name}?",
+      yesButton: const PrimaryBottomSheetButton(
+        "Delete",
+        TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.red,
+        ),
+      ),
+      noButton: const PrimaryBottomSheetButton(
+        "Cancel",
+        TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ).then((response) {
+      if (!response) return;
+
+      User user = FirebaseAuth.instance.currentUser!;
+      Navigator.pop(context);
+      FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(task.id).delete();
+    });
   }
 
   @override
