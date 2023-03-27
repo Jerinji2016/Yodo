@@ -30,6 +30,7 @@ class YodoApp extends StatelessWidget {
       onGenerateRoute: Routes.onGenerateRoute,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "Poppins",
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.orange,
           elevation: 5.0,
@@ -40,6 +41,7 @@ class YodoApp extends StatelessWidget {
             statusBarIconBrightness: Brightness.light,
           ),
           titleTextStyle: const TextStyle(
+            fontFamily: "Poppins",
             fontSize: 18.0,
             fontWeight: FontWeight.bold,
             color: Colors.white,
