@@ -84,34 +84,33 @@ class _TaskEditorState extends State<TaskEditor> {
     setState(() => _isProcessing = false);
   }
 
-  void _onDeleteTapped() async {
-    debugPrint("_TaskEditorState._onDeleteTapped: ");
-    bool response = await PrimaryBottomSheet.show(
-      context: context,
-      title: "Delete Task",
-      description: "Are you sure you want to delete this task?",
-      yesButton: const PrimaryBottomSheetButton(
-        "Delete",
-        TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.red,
+  void _onDeleteTapped() async => await PrimaryBottomSheet.show(
+        context: context,
+        title: "Delete Task",
+        description: "Are you sure you want to delete this task?",
+        yesButton: const PrimaryBottomSheetButton(
+          "Delete",
+          TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.red,
+          ),
         ),
-      ),
-      noButton: const PrimaryBottomSheetButton(
-        "Cancel",
-        TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold,
+        noButton: const PrimaryBottomSheetButton(
+          "Cancel",
+          TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-    );
+      ).then(
+        (response) {
+          if (!response) return;
 
-    if (!response) return;
-
-    //  go ahead with delete
-    debugPrint("_TaskEditorState._onDeleteTapped: delete");
-  }
+          _viewModal.deleteTask();
+          Navigator.pop(context);
+        },
+      );
 
   Future<bool> _onPopScope() async {
     debugPrint("_TaskEditorState._onPopScope: ");

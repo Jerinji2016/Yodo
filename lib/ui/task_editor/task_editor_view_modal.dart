@@ -11,6 +11,8 @@ class TaskEditorViewModal {
   DateTime? dueDate;
   String? taskId;
 
+  final User user = FirebaseAuth.instance.currentUser!;
+
   TaskEditorViewModal() {
     nameController = TextEditingController();
     descriptionController = TextEditingController();
@@ -42,7 +44,6 @@ class TaskEditorViewModal {
   }
 
   Future<void> createTask(BuildContext context, Task task) async {
-    User user = FirebaseAuth.instance.currentUser!;
     CreateTaskDto dto = CreateTaskDto(task);
     await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").add(dto.map).then(
           (value) async => await value.get().then(
@@ -54,6 +55,9 @@ class TaskEditorViewModal {
           ),
         );
   }
+
+  Future<void> deleteTask() async =>
+      await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(taskId).delete();
 
   void dispose() {
     nameController.dispose();
