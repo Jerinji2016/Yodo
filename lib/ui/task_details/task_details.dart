@@ -43,12 +43,8 @@ class TaskDetails extends StatelessWidget {
 
   Future<void> _onDeleteTapped(BuildContext context) async {
     User user = FirebaseAuth.instance.currentUser!;
-    FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(task.id).delete().then(
-      (value) {
-        debugPrint("TaskDetails._onDeleteTapped: deleted");
-        Navigator.pop(context);
-      },
-    );
+    Navigator.pop(context);
+    FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(task.id).delete();
   }
 
   @override
