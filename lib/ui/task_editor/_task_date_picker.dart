@@ -72,9 +72,9 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
                 children: [
                   Text(
                     _selectedDate != null ? globalDateFormat.format(_selectedDate!) : "Select due date",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16.0,
-                      color: darkDisabledColor,
+                      color: _selectedDate != null ? null : darkDisabledColor,
                     ),
                   ),
                 ],
