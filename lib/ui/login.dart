@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yodo/providers/theme_provider.dart';
 
 import '../routes.dart';
 import '../widgets/google_sign_in_button.dart';
@@ -21,15 +23,16 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "Login to continue",
           style: TextStyle(
-            color: Colors.black,
+            color: themeProvider.isDarkTheme ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -52,7 +55,8 @@ class LoginPage extends StatelessWidget {
             ),
             Center(
               child: AnimatedSize(
-                duration: const Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 100),
+                alignment: Alignment.center,
                 child: GoogleSignInButton(
                   onSignInComplete: (user) => _onSignInComplete(context, user),
                   onSignInFailed: (message) => _onSignInFailed(context, message),

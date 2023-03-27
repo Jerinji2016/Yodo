@@ -63,7 +63,7 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
                 Radius.circular(8.0),
               ),
               border: Border.all(
-                color: Theme.of(context).inputDecorationTheme.border?.borderSide.color ?? Colors.grey[500]!,
+                color: Theme.of(context).inputDecorationTheme.border!.borderSide.color,
               ),
             ),
             child: Padding(
@@ -74,7 +74,7 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
                     _selectedDate != null ? globalDateFormat.format(_selectedDate!) : "Select due date",
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.grey[700]!,
+                      color: _selectedDate != null ? null : darkDisabledColor,
                     ),
                   ),
                 ],

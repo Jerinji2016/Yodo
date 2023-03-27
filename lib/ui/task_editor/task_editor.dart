@@ -1,6 +1,7 @@
 library task_editor;
 
 import 'package:flutter/material.dart';
+import 'package:yodo/utils/themes.dart';
 
 import '../../enums/task_edit_type.dart';
 import '../../modals/task.dart';
@@ -131,7 +132,9 @@ class _TaskEditorState extends State<TaskEditor> {
       onWillPop: _onPopScope,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Create New Task"),
+          title: Text(
+            widget.args.editType == TaskEditType.edit ? "Edit Task" : "Create New Task",
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
@@ -140,12 +143,8 @@ class _TaskEditorState extends State<TaskEditor> {
             children: [
               TextField(
                 controller: _viewModal.nameController,
+                style: Theme.of(context).textTheme.headlineSmall,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8.0),
-                    ),
-                  ),
                   label: Text("Task name"),
                 ),
               ),
@@ -154,15 +153,9 @@ class _TaskEditorState extends State<TaskEditor> {
                 controller: _viewModal.descriptionController,
                 minLines: 4,
                 maxLines: 4,
+                style: Theme.of(context).textTheme.headlineSmall,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8.0),
-                    ),
-                  ),
                   label: Text("Task description"),
-                  alignLabelWithHint: true,
-                  floatingLabelAlignment: FloatingLabelAlignment.start,
                 ),
               ),
               const SizedBox(height: 16.0),

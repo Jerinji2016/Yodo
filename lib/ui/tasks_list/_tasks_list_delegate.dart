@@ -35,9 +35,8 @@ class _TaskTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Material(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         elevation: 8.0,
-        shadowColor: Colors.grey[100],
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(8.0),
@@ -59,21 +58,19 @@ class _TaskTile extends StatelessWidget {
                     children: [
                       Text(
                         task.name,
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 6.0),
                       Text(
                         task.description,
-                        style: const TextStyle(),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
                   ),
                 ),
                 Text(
-                  globalDateFormat.format(task.dueDate),
+                  task.formattedDueDate,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
