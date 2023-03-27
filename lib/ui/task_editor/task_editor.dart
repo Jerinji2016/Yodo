@@ -70,7 +70,7 @@ class _TaskEditorState extends State<TaskEditor> {
       if (widget.args.editType == TaskEditType.edit) {
         //  update task
       } else {
-        await _viewModal.createTask(task);
+        await _viewModal.createTask(context, task);
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

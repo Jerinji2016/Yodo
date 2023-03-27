@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yodo/dto/create_task_dto.dart';
+import 'package:yodo/ui/task_details/task_details.dart';
 
 import '../../modals/task.dart';
 
@@ -40,11 +41,18 @@ class TaskEditorViewModal {
     return Task.create(name, description, dueDate!);
   }
 
-  Future<void> createTask(Task task) async {
+  Future<void> createTask(BuildContext context, Task task) async {
     User user = FirebaseAuth.instance.currentUser!;
     CreateTaskDto dto = CreateTaskDto(task);
-    var response = await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").add(dto.map);
-    debugPrint("TaskEditorViewModal.createTask: id ${response.id}");
+    await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").add(dto.map).then(
+          (value) async => await value.get().then(
+            (updatedTaskDocument) {
+              Task createdTask = Task.fromJson(updatedTaskDocument.id, updatedTaskDocument.data()!);
+              Navigator.pop(context);
+              TaskDetails.showBottomModalSheet(context, createdTask);
+            },
+          ),
+        );
   }
 
   void dispose() {
