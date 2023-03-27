@@ -44,6 +44,7 @@ class TaskEditor extends StatefulWidget {
 
 class _TaskEditorState extends State<TaskEditor> {
   late final TaskEditorViewModal _viewModal;
+  bool _isProcessing = false;
 
   @override
   void initState() {
@@ -65,6 +66,7 @@ class _TaskEditorState extends State<TaskEditor> {
   void _onSubmitTapped() async {
     debugPrint("_TaskEditorState._onSubmitTapped: ");
 
+    setState(() => _isProcessing = true);
     try {
       Task task = _viewModal.validate();
       if (widget.args.editType == TaskEditType.edit) {
@@ -79,6 +81,7 @@ class _TaskEditorState extends State<TaskEditor> {
         ),
       );
     }
+    setState(() => _isProcessing = false);
   }
 
   void _onDeleteTapped() async {
@@ -170,10 +173,17 @@ class _TaskEditorState extends State<TaskEditor> {
               const Expanded(
                 child: SizedBox(),
               ),
-              PrimaryButton(
-                text: "Submit",
-                expandedWidth: true,
-                onTap: _onSubmitTapped,
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: _isProcessing
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : PrimaryButton(
+                        text: "Submit",
+                        expandedWidth: true,
+                        onTap: _onSubmitTapped,
+                      ),
               ),
               if (widget.args.editType == TaskEditType.edit) ...[
                 const SizedBox(height: 8.0),
