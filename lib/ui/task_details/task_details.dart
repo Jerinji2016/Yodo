@@ -87,6 +87,7 @@ class TaskDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Text(
@@ -122,29 +123,32 @@ class TaskDetails extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: 24.0),
-            Wrap(
-              runSpacing: 10.0,
-              spacing: 8.0,
-              children: [
-                _TaskActionButtons(
-                  icon: Icons.copy,
-                  text: "Duplicate",
-                  onTap: () => _onDuplicateTapped(context),
-                ),
-                _TaskActionButtons(
-                  icon: Icons.edit,
-                  text: "Edit",
-                  onTap: () => _onEditTapped(context),
-                ),
-                _TaskActionButtons(
-                  icon: Icons.delete_outline,
-                  text: "Delete",
-                  color: Colors.red,
-                  onTap: () => _onDeleteTapped(context),
-                ),
-              ],
-            )
+            const SizedBox(height: 32.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Wrap(
+                runSpacing: 10.0,
+                spacing: 8.0,
+                children: [
+                  _TaskActionButtons(
+                    icon: Icons.copy,
+                    text: "Duplicate",
+                    onTap: () => _onDuplicateTapped(context),
+                  ),
+                  _TaskActionButtons(
+                    icon: Icons.edit,
+                    text: "Edit",
+                    onTap: () => _onEditTapped(context),
+                  ),
+                  _TaskActionButtons(
+                    icon: Icons.delete_outline,
+                    text: "Delete",
+                    color: Colors.red,
+                    onTap: () => _onDeleteTapped(context),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

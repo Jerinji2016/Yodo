@@ -73,7 +73,7 @@ class _TaskTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  globalDateFormat.format(task.dueDate),
+                  task.formattedDueDate,
                 ),
               ],
             ),

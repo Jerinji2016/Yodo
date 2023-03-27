@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:yodo/utils/globals.dart';
 
 class Task {
   final String id;
@@ -13,6 +14,25 @@ class Task {
       : name = json["name"],
         description = json["description"],
         dueDate = DateTime.fromMillisecondsSinceEpoch(json["dueDate"]);
+
+  String get formattedDueDate {
+    DateTime today = DateTime.now().copyWith(hour: 0, minute: 0, second: 0, microsecond: 0, millisecond: 0);
+    if (dueDate.isAtSameMomentAs(today)) {
+      return "Today";
+    }
+
+    DateTime tomorrow = today.add(const Duration(days: 1));
+    if (tomorrow.isAtSameMomentAs(dueDate)) {
+      return "Tomorrow";
+    }
+
+    DateTime yesterday = today.subtract(const Duration(days: 1));
+    if (yesterday.isAtSameMomentAs(dueDate)) {
+      return "Yesterday";
+    }
+
+    return globalDateFormat.format(dueDate);
+  }
 
   @override
   String toString() => "Task($name, $dueDate)";
