@@ -141,6 +141,7 @@ class _TaskEditorState extends State<TaskEditor> {
             children: [
               TextField(
                 controller: _viewModal.nameController,
+                style: Theme.of(context).textTheme.headlineSmall,
                 decoration: const InputDecoration(
                   label: Text("Task name"),
                 ),
@@ -150,6 +151,7 @@ class _TaskEditorState extends State<TaskEditor> {
                 controller: _viewModal.descriptionController,
                 minLines: 4,
                 maxLines: 4,
+                style: Theme.of(context).textTheme.headlineSmall,
                 decoration: const InputDecoration(
                   label: Text("Task description"),
                 ),
