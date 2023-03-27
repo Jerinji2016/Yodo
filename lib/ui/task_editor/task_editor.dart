@@ -132,7 +132,9 @@ class _TaskEditorState extends State<TaskEditor> {
       onWillPop: _onPopScope,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Create New Task"),
+          title: Text(
+            widget.args.editType == TaskEditType.edit ? "Edit Task" : "Create New Task",
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
