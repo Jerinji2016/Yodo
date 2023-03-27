@@ -64,7 +64,7 @@ class _TaskEditorState extends State<TaskEditor> {
   }
 
   void _onSubmitTapped() async {
-    debugPrint("_TaskEditorState._onSubmitTapped: ");
+    FocusScope.of(context).requestFocus(FocusNode());
 
     setState(() => _isProcessing = true);
     try {
