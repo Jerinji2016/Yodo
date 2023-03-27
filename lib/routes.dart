@@ -18,8 +18,16 @@ class Routes {
           builder: (context) => const TasksList(),
         );
       case manageTask:
+        TaskEditorArgs? taskEditorArgs;
+        if (settings.arguments != null) {
+          assert(settings.arguments is TaskEditorArgs);
+          taskEditorArgs = settings.arguments as TaskEditorArgs;
+        }
+
         return MaterialPageRoute(
-          builder: (context) => const TaskEditor(),
+          builder: (context) => TaskEditor(
+            args: taskEditorArgs,
+          ),
         );
       default:
         return MaterialPageRoute(

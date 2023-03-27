@@ -44,7 +44,7 @@ class _TaskTile extends StatelessWidget {
           ),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () => TaskDetails.showBottomModalSheet(context, task),
           borderRadius: const BorderRadius.all(
             Radius.circular(8.0),
           ),

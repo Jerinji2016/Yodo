@@ -7,11 +7,17 @@ import '../widgets/google_sign_in_button.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  void _onSignInComplete(BuildContext context, User user) async {
-    Navigator.pushReplacementNamed(context, Routes.tasksList);
-  }
+  void _onSignInComplete(BuildContext context, User user) async =>
+      Navigator.pushReplacementNamed(context, Routes.tasksList);
 
-  void _onSignInFailed(String message) async {}
+  void _onSignInFailed(BuildContext context, String message) async => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Colors.red,
+          closeIconColor: Colors.white,
+          showCloseIcon: true,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +55,7 @@ class LoginPage extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 child: GoogleSignInButton(
                   onSignInComplete: (user) => _onSignInComplete(context, user),
-                  onSignInFailed: _onSignInFailed,
+                  onSignInFailed: (message) => _onSignInFailed(context, message),
                 ),
               ),
             ),

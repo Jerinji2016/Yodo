@@ -3,12 +3,13 @@ library tasks_list;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:yodo/utils/globals.dart';
 
 import '../../modals/task.dart';
 import '../../routes.dart';
+import '../../utils/globals.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/profile_modal.dart';
+import '../task_details/task_details.dart';
 
 part '_no_tasks_view.dart';
 part '_tasks_list_delegate.dart';

@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yodo/dto/create_task_dto.dart';
+import 'package:yodo/dto/update_task_dto.dart';
+import 'package:yodo/ui/task_details/task_details.dart';
 
 import '../../modals/task.dart';
 
@@ -9,6 +11,8 @@ class TaskEditorViewModal {
   late final TextEditingController nameController, descriptionController;
   DateTime? dueDate;
   String? taskId;
+
+  final User user = FirebaseAuth.instance.currentUser!;
 
   TaskEditorViewModal() {
     nameController = TextEditingController();
@@ -20,6 +24,7 @@ class TaskEditorViewModal {
     nameController = TextEditingController(text: task.name);
     descriptionController = TextEditingController(text: task.description);
     dueDate = task.dueDate;
+    debugPrint("TaskEditorViewModal.fromTask: $task");
   }
 
   bool get hasAllValuesEmpty => nameController.text.isEmpty && descriptionController.text.isEmpty && dueDate == null;
@@ -39,12 +44,46 @@ class TaskEditorViewModal {
     return Task.create(name, description, dueDate!);
   }
 
-  Future<void> createTask(Task task) async {
-    User user = FirebaseAuth.instance.currentUser!;
+  Future<void> createTask(BuildContext context, Task task) async {
     CreateTaskDto dto = CreateTaskDto(task);
-    var response = await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").add(dto.map);
-    debugPrint("TaskEditorViewModal.createTask: id ${response.id}");
+    await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").add(dto.map).then(
+          (value) async => await value.get().then(
+            (updatedTaskDocument) {
+              Task createdTask = Task.fromJson(updatedTaskDocument.id, updatedTaskDocument.data()!);
+              Navigator.pop(context);
+              TaskDetails.showBottomModalSheet(context, createdTask);
+            },
+          ),
+        );
   }
+
+  Future<void> updateTask(BuildContext context, Task task) async {
+    UpdateTaskDto dto = UpdateTaskDto(task);
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .collection("tasks")
+        .doc(taskId)
+        .update(dto.map)
+        .then(
+          (value) async => await FirebaseFirestore.instance
+              .collection("users")
+              .doc(user.uid)
+              .collection("tasks")
+              .doc(taskId)
+              .get()
+              .then(
+            (updatedTaskDocument) {
+              Task createdTask = Task.fromJson(updatedTaskDocument.id, updatedTaskDocument.data()!);
+              Navigator.pop(context);
+              TaskDetails.showBottomModalSheet(context, createdTask);
+            },
+          ),
+        );
+  }
+
+  Future<void> deleteTask() async =>
+      await FirebaseFirestore.instance.collection("users").doc(user.uid).collection("tasks").doc(taskId).delete();
 
   void dispose() {
     nameController.dispose();

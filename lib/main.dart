@@ -54,6 +54,9 @@ class YodoApp extends StatelessWidget {
             ),
           ),
         ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Colors.orange,
+        ),
       ),
       initialRoute: initialRoute,
     );

@@ -15,7 +15,7 @@ class _TaskDatePicker extends StatefulWidget {
 }
 
 class _TaskDatePickerState extends State<_TaskDatePicker> {
-  DateTime? _selectedDate;
+  late DateTime? _selectedDate = widget.initialDateTime;
 
   bool get hasValidDate => _selectedDate != null;
 
@@ -25,7 +25,7 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
 
     DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: _selectedDate ?? DateTime.now(),
       firstDate: firstDate,
       lastDate: lastDate,
     );
