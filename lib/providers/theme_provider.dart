@@ -25,6 +25,7 @@ class ThemeProvider extends ChangeNotifier {
     );
 
     int nextIndex = (currentThemeIndex + 1) % ThemeMode.values.length;
+    preferences.setInt(_key, nextIndex);
     _mode = ThemeMode.values.elementAt(nextIndex);
     notifyListeners();
   }
