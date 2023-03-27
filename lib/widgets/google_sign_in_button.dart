@@ -40,8 +40,9 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
           widget.onSignInFailed("No user was found");
         }
       } catch (e) {
+        await googleSignIn.signOut();
         debugPrint("_GoogleSignInButtonState._signInWithGoogle: ERROR: $e");
-        widget.onSignInFailed("Authentication Failed!");
+        widget.onSignInFailed("Authentication Failed! Try with other account.");
       }
     } else {
       //  ignore: authentication cancelled by user
