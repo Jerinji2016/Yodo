@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+const Color primaryColor = Color(0xFF46539E);
+const Color primaryButtonColor = Color(0xFF2EB9EE);
+const Color primaryButtonShadow = Color(0xFF186483);
+
 const Color lightDisabledColor = Color(0xFF3B3B3B), darkDisabledColor = Color(0xFFADADAD);
 
 ThemeData lightTheme = ThemeData(
   fontFamily: "Poppins",
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: primaryColor,
   disabledColor: lightDisabledColor,
   cardColor: Colors.grey[200]!,
-  shadowColor: Colors.grey[100]!,
   iconTheme: IconThemeData(
     color: Colors.grey[700],
   ),
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.orange,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: primaryColor,
     elevation: 5.0,
-    shadowColor: Colors.grey[100]!,
-    systemOverlayStyle: const SystemUiOverlayStyle(
-      statusBarColor: Colors.orange,
+    shadowColor: primaryButtonShadow,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: primaryColor,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ),
-    titleTextStyle: const TextStyle(
+    titleTextStyle: TextStyle(
       fontFamily: "Poppins",
       fontSize: 18.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
-    iconTheme: const IconThemeData(
+    iconTheme: IconThemeData(
       color: Colors.white,
     ),
-    shape: const RoundedRectangleBorder(
+    shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(8.0),
         bottomRight: Radius.circular(8.0),
@@ -106,7 +109,7 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: Colors.white,
+    backgroundColor: primaryColor,
   ),
 );
 
