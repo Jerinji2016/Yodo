@@ -11,7 +11,7 @@ class _TaskActionButtons extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.onTap,
-    this.color = Colors.orange,
+    this.color = accentColor,
   }) : super(key: key);
 
   @override

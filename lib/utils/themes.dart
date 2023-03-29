@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const Color primaryColor = Color(0xFF46539E);
-const Color primaryButtonColor = Color(0xFF2EB9EE);
-const Color primaryButtonShadow = Color(0xFF186483);
+const Color primaryBackgroundColor = Color(0xFF46539E);
+const Color accentColor = Color(0xFF2EB9EE);
+const Color accentShadowColor = Color(0xFF186483);
 
 const Color lightDisabledColor = Color(0xFF3B3B3B), darkDisabledColor = Color(0xFFADADAD);
 
 ThemeData lightTheme = ThemeData(
   fontFamily: "Poppins",
-  scaffoldBackgroundColor: primaryColor,
+  scaffoldBackgroundColor: primaryBackgroundColor,
   disabledColor: lightDisabledColor,
   cardColor: Colors.grey[200]!,
-  iconTheme: IconThemeData(
-    color: Colors.grey[700],
+  iconTheme: const IconThemeData(
+    color: Colors.white,
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: accentColor,
   ),
   appBarTheme: const AppBarTheme(
-    backgroundColor: primaryColor,
+    backgroundColor: primaryBackgroundColor,
     elevation: 5.0,
-    shadowColor: primaryButtonShadow,
+    shadowColor: accentShadowColor,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: primaryColor,
+      statusBarColor: primaryBackgroundColor,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ),
@@ -41,17 +44,17 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   progressIndicatorTheme: const ProgressIndicatorThemeData(
-    color: Colors.orange,
+    color: accentColor,
   ),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontSize: 28.0,
       fontWeight: FontWeight.w500,
       height: 1.0,
     ),
     headlineSmall: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontSize: 16.0,
     ),
     headlineMedium: TextStyle(
@@ -60,17 +63,17 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w600,
     ),
     bodyLarge: TextStyle(
+      color: Colors.white,
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
-      color: Colors.black,
     ),
     bodyMedium: TextStyle(
       fontSize: 14.0,
-      color: Colors.black,
+      color: Colors.white,
     ),
     bodySmall: TextStyle(
       fontSize: 12.0,
-      color: Colors.black,
+      color: Colors.white,
       fontStyle: FontStyle.italic,
     ),
   ),
@@ -80,7 +83,7 @@ ThemeData lightTheme = ThemeData(
       color: darkDisabledColor,
     ),
     floatingLabelStyle: const TextStyle(
-      color: Colors.orange,
+      color: accentColor,
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(
@@ -103,13 +106,13 @@ ThemeData lightTheme = ThemeData(
         Radius.circular(8.0),
       ),
       borderSide: BorderSide(
-        color: Colors.orange,
+        color: accentColor,
         width: 2.0,
       ),
     ),
   ),
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: primaryColor,
+    backgroundColor: primaryBackgroundColor,
   ),
 );
 
@@ -122,12 +125,15 @@ ThemeData darkTheme = ThemeData(
   iconTheme: const IconThemeData(
     color: Colors.white,
   ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: accentColor,
+  ),
   appBarTheme: AppBarTheme(
-    backgroundColor: Colors.orange,
+    backgroundColor: Colors.grey[900]!,
     elevation: 5.0,
-    shadowColor: Colors.grey[100]!,
-    systemOverlayStyle: const SystemUiOverlayStyle(
-      statusBarColor: Colors.orange,
+    shadowColor: accentShadowColor,
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.grey[900]!,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ),
@@ -148,7 +154,7 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
   progressIndicatorTheme: const ProgressIndicatorThemeData(
-    color: Colors.orange,
+    color: accentColor,
   ),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
@@ -187,7 +193,7 @@ ThemeData darkTheme = ThemeData(
       color: darkDisabledColor,
     ),
     floatingLabelStyle: const TextStyle(
-      color: Colors.orange,
+      color: accentColor,
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(
@@ -210,7 +216,7 @@ ThemeData darkTheme = ThemeData(
         Radius.circular(8.0),
       ),
       borderSide: BorderSide(
-        color: Colors.orange,
+        color: accentColor,
         width: 2.0,
       ),
     ),

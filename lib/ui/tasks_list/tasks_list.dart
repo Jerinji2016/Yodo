@@ -34,7 +34,6 @@ class TasksList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, Routes.manageTask),
-        backgroundColor: Colors.orange,
         child: const Icon(
           Icons.add,
         ),

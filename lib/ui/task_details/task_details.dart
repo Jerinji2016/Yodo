@@ -3,6 +3,7 @@ library task_details;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:yodo/utils/themes.dart';
 
 import '../../modals/task.dart';
 import '../../routes.dart';
@@ -107,19 +108,20 @@ class TaskDetails extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 0.0),
             Text(
               task.description,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
-                color: Colors.grey[500],
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 16.0),
             Text(
               "Due on: ${globalDateFormat.format(task.dueDate)}",
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 14.0,
+                color: Color(0xFFACB2E5),
                 fontWeight: FontWeight.w500,
               ),
             ),

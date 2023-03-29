@@ -20,7 +20,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: primaryButtonColor,
+      color: accentColor,
       shadowColor: const Color(0xFF093649),
       elevation: 8.0,
       borderRadius: BorderRadius.all(
