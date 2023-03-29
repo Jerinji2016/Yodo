@@ -32,6 +32,7 @@ class _NoTasksView extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 12.0),
           PrimaryButton(
             prefixIcon: Icons.add,
             text: "New TODO",

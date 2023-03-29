@@ -181,7 +181,11 @@ class TasksList extends StatelessWidget {
                   ),
                 if (snapshot.data != null)
                   snapshot.data!.docs.isEmpty
-                      ? const _NoTasksView()
+                      ? const SliverToBoxAdapter(
+                          child: Center(
+                            child: _NoTasksView(),
+                          ),
+                        )
                       : SliverPadding(
                           padding: const EdgeInsets.only(bottom: 84.0),
                           sliver: SliverList(
