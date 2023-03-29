@@ -79,26 +79,17 @@ ThemeData lightTheme = ThemeData(
     floatingLabelStyle: const TextStyle(
       color: accentColor,
     ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(8.0),
-      ),
+    enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
         color: Colors.grey[500]!,
       ),
     ),
-    border: OutlineInputBorder(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(8.0),
-      ),
+    border: UnderlineInputBorder(
       borderSide: BorderSide(
         color: Colors.grey[500]!,
       ),
     ),
-    focusedBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(
-        Radius.circular(8.0),
-      ),
+    focusedBorder: const UnderlineInputBorder(
       borderSide: BorderSide(
         color: accentColor,
         width: 2.0,
@@ -183,7 +174,7 @@ ThemeData darkTheme = ThemeData(
     floatingLabelStyle: const TextStyle(
       color: accentColor,
     ),
-    enabledBorder: OutlineInputBorder(
+    enabledBorder: UnderlineInputBorder(
       borderRadius: const BorderRadius.all(
         Radius.circular(8.0),
       ),
@@ -191,7 +182,7 @@ ThemeData darkTheme = ThemeData(
         color: Colors.grey[500]!,
       ),
     ),
-    border: OutlineInputBorder(
+    border: UnderlineInputBorder(
       borderRadius: const BorderRadius.all(
         Radius.circular(8.0),
       ),
@@ -199,7 +190,7 @@ ThemeData darkTheme = ThemeData(
         color: Colors.grey[500]!,
       ),
     ),
-    focusedBorder: const OutlineInputBorder(
+    focusedBorder: const UnderlineInputBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(8.0),
       ),
