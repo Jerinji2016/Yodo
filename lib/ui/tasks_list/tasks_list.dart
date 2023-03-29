@@ -21,7 +21,7 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User user = FirebaseAuth.instance.currentUser!;
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -58,18 +58,25 @@ class TasksList extends StatelessWidget {
                     background: Stack(
                       fit: StackFit.expand,
                       children: [
-                        const Image(
-                          image: AssetImage("assets/images/header_bg.jpeg"),
+                        Image(
+                          image: const AssetImage("assets/images/header_bg.jpeg"),
                           fit: BoxFit.cover,
                           colorBlendMode: BlendMode.lighten,
-                          color: Colors.white12,
+                          color: primaryBackgroundColor.withOpacity(0.4),
                         ),
                         Positioned(
                           right: 0,
                           top: 0,
                           bottom: 0,
-                          child: Material(
-                            color: Colors.black12,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: RadialGradient(
+                                colors: [
+                                  Colors.black.withOpacity(0.01),
+                                  Colors.black.withOpacity(0.07),
+                                ],
+                              ),
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -99,7 +106,9 @@ class TasksList extends StatelessWidget {
                                           ],
                                         );
                                       }
-                                      return const Text("Loading..");
+                                      return CircularProgressIndicator(
+                                        color: Colors.white.withOpacity(0.3),
+                                      );
                                     }),
                                   ),
                                 ),
@@ -140,7 +149,10 @@ class TasksList extends StatelessWidget {
                       onPressed: () => ProfileModal.show(context),
                       padding: const EdgeInsets.all(16.0),
                       enableFeedback: true,
-                      icon: const Icon(Icons.person),
+                      icon: Icon(
+                        Icons.person,
+                        color: Colors.grey[400]!,
+                      ),
                     ),
                   ],
                 ),
@@ -186,13 +198,17 @@ class _TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
+    Color borderColor = themeProvider.isDarkTheme ? Colors.grey[800]! : Colors.grey[200]!;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Colors.grey[200]!,
+              color: borderColor,
             ),
           ),
         ),
@@ -215,7 +231,7 @@ class _TaskTile extends StatelessWidget {
                           Radius.circular(28.0),
                         ),
                         border: Border.all(
-                          color: Colors.grey[200]!,
+                          color: borderColor,
                         ),
                       ),
                       child: const SizedBox.square(
