@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yodo/providers/theme_provider.dart';
+import 'package:yodo/ui/tasks_list/task_avatar.dart';
 import 'package:yodo/utils/themes.dart';
 
 import '../../modals/task.dart';
@@ -225,23 +226,9 @@ class _TaskTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(28.0),
-                        ),
-                        border: Border.all(
-                          color: borderColor,
-                        ),
-                      ),
-                      child: const SizedBox.square(
-                        dimension: 56.0,
-                        child: Icon(
-                          Icons.task_alt_outlined,
-                          color: accentColor,
-                          size: 28,
-                        ),
-                      ),
+                    child: TaskAvatar(
+                      id: task.id.hashCode,
+                      radius: 28.0,
                     ),
                   ),
                   const SizedBox(width: 8.0),

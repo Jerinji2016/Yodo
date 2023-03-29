@@ -2,6 +2,7 @@ library task_editor;
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yodo/ui/tasks_list/task_avatar.dart';
 import 'package:yodo/utils/themes.dart';
 
 import '../../enums/task_edit_type.dart';
@@ -159,23 +160,8 @@ class _TaskEditorState extends State<TaskEditor> {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 60.0, top: 20.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(36.0),
-                        ),
-                        border: Border.all(
-                          color: Colors.grey[500]!,
-                        ),
-                      ),
-                      child: const SizedBox.square(
-                        dimension: 72.0,
-                        child: Icon(
-                          Icons.task_alt_outlined,
-                          color: accentColor,
-                          size: 32,
-                        ),
-                      ),
+                    child: TaskAvatar(
+                      id: _viewModal.taskId?.hashCode ?? 0,
                     ),
                   ),
                 ),
@@ -190,7 +176,7 @@ class _TaskEditorState extends State<TaskEditor> {
                 TextField(
                   controller: _viewModal.descriptionController,
                   minLines: 1,
-                  maxLines: 4,
+                  maxLines: 8,
                   style: Theme.of(context).textTheme.headlineSmall,
                   decoration: const InputDecoration(
                     label: Text("Task description"),
