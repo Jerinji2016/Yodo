@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yodo/providers/theme_provider.dart';
 
@@ -24,10 +25,18 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    Color primaryColor = themeProvider.isDarkTheme ? Theme.of(context).scaffoldBackgroundColor : Colors.white;
+
     return Scaffold(
+      backgroundColor: primaryColor,
       appBar: AppBar(
         elevation: 0.0,
+        backgroundColor: primaryColor,
         centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: primaryColor,
+          statusBarIconBrightness: themeProvider.isDarkTheme ? Brightness.light : Brightness.dark,
+        ),
         title: const Text(
           "Login to continue",
           style: TextStyle(
