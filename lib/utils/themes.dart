@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 const Color primaryBackgroundColor = Color(0xFF46539E);
+const Color primaryDarkBackgroundColor = Color(0xFF212121);
 const Color accentColor = Color(0xFF2EB9EE);
 const Color accentShadowColor = Color(0xFF186483);
 
@@ -103,32 +104,32 @@ ThemeData lightTheme = ThemeData(
 
 ThemeData darkTheme = ThemeData(
   fontFamily: "Poppins",
-  scaffoldBackgroundColor: Colors.grey[900]!,
+  scaffoldBackgroundColor: primaryDarkBackgroundColor,
   disabledColor: darkDisabledColor,
   cardColor: Colors.blueGrey[900]!,
-  shadowColor: Colors.grey[900],
+  shadowColor: primaryDarkBackgroundColor,
   iconTheme: const IconThemeData(
     color: Colors.white,
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: accentColor,
   ),
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.grey[900]!,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: primaryDarkBackgroundColor,
     elevation: 5.0,
     shadowColor: accentShadowColor,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.grey[900]!,
+      statusBarColor: primaryDarkBackgroundColor,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
     ),
-    titleTextStyle: const TextStyle(
+    titleTextStyle: TextStyle(
       fontFamily: "Poppins",
       fontSize: 18.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
-    iconTheme: const IconThemeData(
+    iconTheme: IconThemeData(
       color: Colors.white,
     ),
   ),
@@ -200,7 +201,7 @@ ThemeData darkTheme = ThemeData(
       ),
     ),
   ),
-  bottomSheetTheme: BottomSheetThemeData(
-    backgroundColor: Colors.grey[900]!,
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: primaryDarkBackgroundColor,
   ),
 );

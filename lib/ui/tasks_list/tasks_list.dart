@@ -46,6 +46,7 @@ class TasksList extends StatelessWidget {
                 SliverAppBar(
                   expandedHeight: 200.0,
                   pinned: true,
+                  systemOverlayStyle: Theme.of(context).appBarTheme.systemOverlayStyle,
                   flexibleSpace: FlexibleSpaceBar(
                     titlePadding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                     collapseMode: CollapseMode.pin,

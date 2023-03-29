@@ -61,7 +61,8 @@ class PrimaryBottomSheet extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 12.0),

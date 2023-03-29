@@ -63,6 +63,7 @@ class TaskDetails extends StatelessWidget {
         TextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
     ).then((response) {
@@ -99,6 +100,7 @@ class TaskDetails extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
