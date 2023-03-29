@@ -1,10 +1,13 @@
 library task_editor;
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yodo/ui/tasks_list/task_avatar.dart';
 import 'package:yodo/utils/themes.dart';
 
 import '../../enums/task_edit_type.dart';
 import '../../modals/task.dart';
+import '../../providers/theme_provider.dart';
 import '../../utils/globals.dart';
 import '../../widgets/primary_bottom_sheet.dart';
 import '../../widgets/primary_button.dart';
@@ -128,73 +131,95 @@ class _TaskEditorState extends State<TaskEditor> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
     return WillPopScope(
       onWillPop: _onPopScope,
       child: Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: accentColor,
+          ),
           title: Text(
             widget.args.editType == TaskEditType.edit ? "Edit Task" : "Create New Task",
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
+            ),
           ),
+          centerTitle: true,
+          elevation: 0.0,
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: _viewModal.nameController,
-                style: Theme.of(context).textTheme.headlineSmall,
-                decoration: const InputDecoration(
-                  label: Text("Task name"),
+          padding: const EdgeInsets.all(24.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 60.0, top: 20.0),
+                    child: TaskAvatar(
+                      id: _viewModal.taskId?.hashCode ?? 0,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              TextField(
-                controller: _viewModal.descriptionController,
-                minLines: 4,
-                maxLines: 4,
-                style: Theme.of(context).textTheme.headlineSmall,
-                decoration: const InputDecoration(
-                  label: Text("Task description"),
+                TextField(
+                  controller: _viewModal.nameController,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  decoration: const InputDecoration(
+                    label: Text("Task name"),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              _TaskDatePicker(
-                onDateSelected: (selectedDate) => _viewModal.dueDate = selectedDate,
-                initialDateTime: _viewModal.dueDate,
-              ),
-              const Expanded(
-                child: SizedBox(),
-              ),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child: _isProcessing
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          PrimaryButton(
-                            text: "Submit",
-                            expandedWidth: true,
-                            onTap: _onSubmitTapped,
-                          ),
-                          if (widget.args.editType == TaskEditType.edit) ...[
-                            const SizedBox(height: 8.0),
-                            PrimaryTextButton(
-                              text: "Delete",
-                              onTap: _onDeleteTapped,
-                              textStyle: const TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
+                const SizedBox(height: 8.0),
+                TextField(
+                  controller: _viewModal.descriptionController,
+                  minLines: 1,
+                  maxLines: 8,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  decoration: const InputDecoration(
+                    label: Text("Task description"),
+                  ),
+                ),
+                const SizedBox(height: 8.0),
+                _TaskDatePicker(
+                  viewModal: _viewModal,
+                  onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+                ),
+                const SizedBox(
+                  height: 24.0,
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: _isProcessing
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            PrimaryButton(
+                              text: "Submit",
+                              expandedWidth: true,
+                              borderRadius: 4.0,
+                              onTap: _onSubmitTapped,
                             ),
+                            if (widget.args.editType == TaskEditType.edit) ...[
+                              const SizedBox(height: 8.0),
+                              PrimaryTextButton(
+                                text: "Delete",
+                                onTap: _onDeleteTapped,
+                                textStyle: const TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ],
-                        ],
-                      ),
-              ),
-            ],
+                        ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

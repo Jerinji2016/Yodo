@@ -62,7 +62,13 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 CircularProgressIndicator(),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Text("Authenticating"),
+                  child: Text(
+                    "Authenticating",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ],
             )
@@ -80,7 +86,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   Radius.circular(30.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
@@ -93,7 +99,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                         child: Text(
                           'Sign in with Google',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.black54,
                             fontWeight: FontWeight.w600,
                           ),

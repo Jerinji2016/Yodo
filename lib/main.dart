@@ -40,8 +40,8 @@ class YodoApp extends StatelessWidget {
             onGenerateRoute: Routes.onGenerateRoute,
             debugShowCheckedModeBanner: false,
             themeMode: themProvider.mode,
-            theme: lightTheme.copyWith(),
-            darkTheme: darkTheme.copyWith(),
+            theme: lightTheme,
+            darkTheme: darkTheme,
             initialRoute: initialRoute,
           );
         },

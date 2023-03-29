@@ -30,9 +30,8 @@ class ProfileModal extends StatelessWidget {
   const ProfileModal._({Key? key}) : super(key: key);
 
   Widget getAvatar(BuildContext context, User user) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return CircleAvatar(
-      backgroundColor: themeProvider.isDarkTheme ? Colors.black : Colors.grey[300]!,
+      backgroundColor: Colors.white,
       radius: 50,
       child: ClipRRect(
         borderRadius: const BorderRadius.all(
@@ -93,13 +92,14 @@ class ProfileModal extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 4.0),
                     Text(
                       user.email!,
-                      style: TextStyle(
-                        color: Theme.of(context).disabledColor,
+                      style: const TextStyle(
+                        color: Colors.white54,
                       ),
                     ),
                     const SizedBox(height: 16.0),
@@ -138,10 +138,9 @@ class ProfileModal extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Builder(builder: (context) {
-                  Color color = themeProvider.isDarkTheme ? Colors.white : Colors.black;
                   return Icon(
                     themeProvider.icon,
-                    color: color,
+                    color: Colors.white,
                   );
                 }),
               ),

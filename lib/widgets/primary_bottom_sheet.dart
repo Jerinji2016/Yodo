@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yodo/providers/theme_provider.dart';
 import 'package:yodo/widgets/primary_text_button.dart';
 
 class PrimaryBottomSheet extends StatelessWidget {
@@ -43,6 +45,8 @@ class PrimaryBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of(context);
+
     return Material(
       color: Colors.transparent,
       shape: const RoundedRectangleBorder(
@@ -61,13 +65,17 @@ class PrimaryBottomSheet extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
             const SizedBox(height: 12.0),
             Text(
               description,
-              style: const TextStyle(fontSize: 16.0),
+              style: TextStyle(
+                fontSize: 16.0,
+                color: themeProvider.isDarkTheme ? null : Colors.white,
+              ),
             ),
             const SizedBox(height: 16.0),
             Row(

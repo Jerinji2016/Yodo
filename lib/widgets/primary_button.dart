@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yodo/utils/themes.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -19,7 +20,8 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.orange,
+      color: accentColor,
+      shadowColor: const Color(0xFF093649),
       elevation: 8.0,
       borderRadius: BorderRadius.all(
         Radius.circular(borderRadius),

@@ -1,13 +1,13 @@
 part of task_editor;
 
 class _TaskDatePicker extends StatefulWidget {
-  final DateTime? initialDateTime;
-  final Function(DateTime selectedDate) onDateSelected;
+  final TaskEditorViewModal viewModal;
+  final VoidCallback onTap;
 
   const _TaskDatePicker({
     Key? key,
-    this.initialDateTime,
-    required this.onDateSelected,
+    required this.viewModal,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -15,11 +15,22 @@ class _TaskDatePicker extends StatefulWidget {
 }
 
 class _TaskDatePickerState extends State<_TaskDatePicker> {
-  late DateTime? _selectedDate = widget.initialDateTime;
+  late DateTime? _selectedDate = widget.viewModal.dueDate;
+  final TextEditingController dateController = TextEditingController();
 
   bool get hasValidDate => _selectedDate != null;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.viewModal.dueDate != null) {
+      dateController.text = globalDateFormat.format(widget.viewModal.dueDate!);
+    }
+  }
+
   void _selectDate() async {
+    widget.onTap.call();
+
     DateTime now = DateTime.now();
     DateTime firstDate = now, lastDate = now.copyWith(year: 2100);
 
@@ -35,10 +46,19 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
       return;
     }
 
-    widget.onDateSelected.call(selectedDate);
+    widget.viewModal.dueDate = selectedDate;
     setState(
-      () => _selectedDate = selectedDate,
+      () {
+        dateController.text = globalDateFormat.format(widget.viewModal.dueDate!);
+        _selectedDate = selectedDate;
+      },
     );
+  }
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,38 +67,15 @@ class _TaskDatePickerState extends State<_TaskDatePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "Due Date",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[600]!,
-          ),
-        ),
-        const SizedBox(height: 4.0),
         GestureDetector(
           onTap: _selectDate,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(8.0),
-              ),
-              border: Border.all(
-                color: Theme.of(context).inputDecorationTheme.border!.borderSide.color,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-              child: Row(
-                children: [
-                  Text(
-                    _selectedDate != null ? globalDateFormat.format(_selectedDate!) : "Select due date",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: _selectedDate != null ? null : darkDisabledColor,
-                    ),
-                  ),
-                ],
-              ),
+          child: TextField(
+            enabled: false,
+            controller: dateController,
+            style: Theme.of(context).textTheme.headlineSmall,
+            decoration: InputDecoration(
+              label: const Text("Due Date"),
+              disabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,
             ),
           ),
         ),
