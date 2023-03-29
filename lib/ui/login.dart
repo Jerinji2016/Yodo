@@ -26,13 +26,11 @@ class LoginPage extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0.0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Login to continue",
           style: TextStyle(
-            color: themeProvider.isDarkTheme ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
