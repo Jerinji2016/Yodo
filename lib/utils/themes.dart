@@ -36,12 +36,6 @@ ThemeData lightTheme = ThemeData(
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(8.0),
-        bottomRight: Radius.circular(8.0),
-      ),
-    ),
   ),
   progressIndicatorTheme: const ProgressIndicatorThemeData(
     color: accentColor,
@@ -63,13 +57,13 @@ ThemeData lightTheme = ThemeData(
       fontWeight: FontWeight.w600,
     ),
     bodyLarge: TextStyle(
-      color: Colors.white,
+      color: Colors.black,
       fontSize: 18.0,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
     ),
     bodyMedium: TextStyle(
       fontSize: 14.0,
-      color: Colors.white,
+      color: darkDisabledColor,
     ),
     bodySmall: TextStyle(
       fontSize: 12.0,
@@ -146,12 +140,6 @@ ThemeData darkTheme = ThemeData(
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(8.0),
-        bottomRight: Radius.circular(8.0),
-      ),
-    ),
   ),
   progressIndicatorTheme: const ProgressIndicatorThemeData(
     color: accentColor,
@@ -174,12 +162,12 @@ ThemeData darkTheme = ThemeData(
     ),
     bodyLarge: TextStyle(
       fontSize: 18.0,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
     bodyMedium: TextStyle(
       fontSize: 14.0,
-      color: Colors.white,
+      color: darkDisabledColor,
     ),
     bodySmall: TextStyle(
       fontSize: 12.0,
