@@ -3,9 +3,11 @@ library tasks_list;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:yodo/providers/theme_provider.dart';
 import 'package:yodo/ui/tasks_list/task_avatar.dart';
+import 'package:yodo/utils/globals.dart';
 import 'package:yodo/utils/themes.dart';
 
 import '../../modals/task.dart';
@@ -46,9 +48,12 @@ class TasksList extends StatelessWidget {
                 SliverAppBar(
                   expandedHeight: 200.0,
                   pinned: true,
-                  systemOverlayStyle: Theme.of(context).appBarTheme.systemOverlayStyle,
+                  elevation: 0.0,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarColor: themeProvider.isDarkTheme ? primaryDarkBackgroundColor : Colors.white,
+                  ),
                   flexibleSpace: FlexibleSpaceBar(
-                    titlePadding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+                    titlePadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                     collapseMode: CollapseMode.pin,
                     title: const Text(
                       "Yodo",
@@ -65,6 +70,16 @@ class TasksList extends StatelessWidget {
                           fit: BoxFit.cover,
                           colorBlendMode: BlendMode.lighten,
                           color: primaryBackgroundColor.withOpacity(0.4),
+                        ),
+                        Positioned(
+                          top: 32.0,
+                          left: 24.0,
+                          child: Text(
+                            globalDateFormat.format(DateTime.now()),
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                         Positioned(
                           right: 0,
@@ -151,9 +166,9 @@ class TasksList extends StatelessWidget {
                       onPressed: () => ProfileModal.show(context),
                       padding: const EdgeInsets.all(16.0),
                       enableFeedback: true,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.person,
-                        color: Colors.grey[400]!,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -236,6 +251,7 @@ class _TaskTile extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
                           children: [
@@ -255,6 +271,9 @@ class _TaskTile extends StatelessWidget {
                         Text(
                           task.description,
                           style: Theme.of(context).textTheme.bodyMedium,
+                          maxLines: 2,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),

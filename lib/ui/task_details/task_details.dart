@@ -23,6 +23,7 @@ class TaskDetails extends StatelessWidget {
           topRight: Radius.circular(12.0),
         ),
       ),
+      isScrollControlled: true,
       builder: (context) => TaskDetails._(task: task),
     );
   }
@@ -85,75 +86,77 @@ class TaskDetails extends StatelessWidget {
           topRight: Radius.circular(12.0),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24.0, 32.0, 24.0, 16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    task.name,
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24.0, 32.0, 24.0, 16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      task.name,
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: const Icon(Icons.close),
-                )
-              ],
-            ),
-            const SizedBox(height: 0.0),
-            Text(
-              task.description,
-              style: const TextStyle(
-                fontSize: 16.0,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Text(
-              "Due on: ${globalDateFormat.format(task.dueDate)}",
-              style: const TextStyle(
-                fontSize: 14.0,
-                color: Color(0xFFACB2E5),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 32.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Wrap(
-                runSpacing: 10.0,
-                spacing: 8.0,
-                children: [
-                  _TaskActionButtons(
-                    icon: Icons.copy,
-                    text: "Duplicate",
-                    onTap: () => _onDuplicateTapped(context),
-                  ),
-                  _TaskActionButtons(
-                    icon: Icons.edit,
-                    text: "Edit",
-                    onTap: () => _onEditTapped(context),
-                  ),
-                  _TaskActionButtons(
-                    icon: Icons.delete_outline,
-                    text: "Delete",
-                    color: Colors.red,
-                    onTap: () => _onDeleteTapped(context),
-                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Icon(Icons.close),
+                  )
                 ],
               ),
-            ),
-          ],
+              const SizedBox(height: 10.0),
+              Text(
+                task.description,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Text(
+                "Due on: ${globalDateFormat.format(task.dueDate)}",
+                style: const TextStyle(
+                  fontSize: 14.0,
+                  color: Color(0xFFACB2E5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 32.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Wrap(
+                  runSpacing: 10.0,
+                  spacing: 8.0,
+                  children: [
+                    _TaskActionButtons(
+                      icon: Icons.copy,
+                      text: "Duplicate",
+                      onTap: () => _onDuplicateTapped(context),
+                    ),
+                    _TaskActionButtons(
+                      icon: Icons.edit,
+                      text: "Edit",
+                      onTap: () => _onEditTapped(context),
+                    ),
+                    _TaskActionButtons(
+                      icon: Icons.delete_outline,
+                      text: "Delete",
+                      color: Colors.red,
+                      onTap: () => _onDeleteTapped(context),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

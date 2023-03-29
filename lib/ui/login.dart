@@ -37,10 +37,11 @@ class LoginPage extends StatelessWidget {
           statusBarColor: primaryColor,
           statusBarIconBrightness: themeProvider.isDarkTheme ? Brightness.light : Brightness.dark,
         ),
-        title: const Text(
+        title: Text(
           "Login to continue",
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: themeProvider.isDarkTheme ? Colors.white : Colors.black,
           ),
         ),
       ),

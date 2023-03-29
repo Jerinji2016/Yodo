@@ -132,7 +132,6 @@ class _TaskEditorState extends State<TaskEditor> {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    Color borderColor = themeProvider.isDarkTheme ? Colors.grey[800]! : Colors.grey[200]!;
 
     return WillPopScope(
       onWillPop: _onPopScope,
