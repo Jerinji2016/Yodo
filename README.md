@@ -6,8 +6,6 @@ A Simple TODO App.
 
 ## Getting Started
 
-***
-
 __Configure Firebase configurations file:__
 
 1. Login in to Firebase console and create a project
