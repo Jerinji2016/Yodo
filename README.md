@@ -1,5 +1,7 @@
 # yodo
 
+![badge](https://img.shields.io/badge/dark-theme-blue)
+
 A Simple TODO App.
 
 ## Getting Started
